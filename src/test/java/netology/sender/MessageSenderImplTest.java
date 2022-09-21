@@ -1,3 +1,5 @@
+package netology.sender;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -42,6 +44,13 @@ public class MessageSenderImplTest {
         String preferences = messageSender.send(headers);
         String expected = "welcome";
 
+        MessageSenderImpl messageSender1 = new MessageSenderImpl(geoService, localizationService);
+        Map<String, String> headers1 = new HashMap<String, String>();
+        headers1.put("x-real-ip", "172.0.32.11");
+        String preferences1 = messageSender1.send(headers1);
+        String expected1 = "Добро пожаловать";
+
         Assertions.assertEquals(expected, preferences);
+        Assertions.assertEquals(expected1, preferences1);
     }
 }
